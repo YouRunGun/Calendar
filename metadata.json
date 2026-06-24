@@ -1,0 +1,6 @@
+{
+  "name": "Шафт Календарь - Учет смен",
+  "description": "Полноценный адаптивный сервис для календаря и учета рабочих смен с аналитикой и экспортом",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
