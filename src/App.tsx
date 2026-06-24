@@ -12,6 +12,21 @@ import { AnalyticsChart } from './components/AnalyticsChart';
 import { DataManager } from './components/DataManager';
 import { ShiftModal } from './components/ShiftModal';
 import { generateSampleShifts } from './utils';
+import { doc, setDoc } from "firebase/firestore";
+import { db, auth } from "./firebaseConfig";
+  
+    const syncWithFirebase = async (data: ShiftData) => {
+    const user = auth.currentUser;
+    if (user) {
+    try {
+          await setDoc(doc(db, "users", user.uid, "tracker", "shiftRecords"), data);
+          console.log("Успешно синхронизировано с Firebase");
+       } catch (e) {
+        console.error("Ошибка синхронизации с Firebase:", e);
+       }
+      }
+     };
+     syncWithFirebase(newShifts);
 
 export default function App() {
   const [shifts, setShifts] = useState<ShiftData>(() => {
