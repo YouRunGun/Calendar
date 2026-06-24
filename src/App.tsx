@@ -120,18 +120,18 @@ export default function App() {
     //
     // ПРИМЕР С SUPABASE DB:
     // -------------------------------------------------------------
-    // import { supabase } from "./supabaseClient";
+     import { supabase } from "./supabaseClient";
     // 
-    // const syncWithSupabase = async (data: ShiftData) => {
-    //   const { data: { user } } = await supabase.auth.getUser();
-    //   if (user) {
-    //     const { error } = await supabase
-    //       .from('user_shifts')
-    //       .upsert({ user_id: user.id, records_json: data });
-    //     if (error) console.error("Ошибка Supabase:", error);
-    //   }
-    // };
-    // syncWithSupabase(newShifts);
+    const syncWithSupabase = async (data: ShiftData) => {
+    const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        const { error } = await supabase
+         .from('user_shifts')
+          .upsert({ user_id: user.id, records_json: data });
+         if (error) console.error("Ошибка Supabase:", error);
+       }
+     };
+    syncWithSupabase(newShifts);
     // =========================================================================
 
     try {
